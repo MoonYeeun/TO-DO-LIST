@@ -1,0 +1,81 @@
+.todo-list-template {
+    margin: 0 auto; /* 페이지 중앙 정렬 */
+    margin-top: 4rem;
+    margin-left: 1rem;
+    width: 100%;
+    display: flex;
+}
+
+#board {
+    -webkit-user-select: none;
+    user-select: none;
+    white-space: nowrap;
+    margin-bottom: 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 8px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  
+.Card {
+    flex: 1;
+    margin-right: 1rem;
+    padding: 1rem;
+    border-radius: 3px;
+    text-align: center;
+    font-weight: 100;
+    background: #e9ecef;
+    color: #1864ab;
+  }
+
+  .Todo {
+    flex: 1;
+    height: 40px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 0.4rem 0px;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 50;
+    background: #ffc9c9;
+    color: #495057;
+  }
+  
+  .DOING {
+    flex: 1;
+    height: 40px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 0.4rem 0px;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 50;
+    background: #ffc9c9;
+    color: #495057;
+  }
+
+  .DONE {
+    flex: 1;
+    height: 40px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 0.4rem 0px;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 50;
+    background: #ffc9c9;
+    color: #495057;
+  }
+
+  .todos-wrapper {
+    text-align: center;
+    min-height: 5rem;
+  }
+
+  .form-wrapper {
+    margin-top: 1rem;
+  }
