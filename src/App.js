@@ -8,30 +8,48 @@ class App extends Component {
   id = 3 // 이미 0,1,2 가 존재하므로 3으로 설정
 
   state = {
-    input: '',
+    input: {
+      title: '할 일 목록 입력 고',
+      body: '잘 나오나?'
+    },
+    modal: false,
     todos: [
-      { id: 0, text: ' 리액트 소개', checked: false },
-      { id: 1, text: ' 리액트 소개', checked: true },
-      { id: 2, text: ' 리액트 소개', checked: false }
+      { id: 0, title: ' 리액트 소개', body: '', checked: false },
+      { id: 1, title: ' 리액트 소개', body: '', checked: true },
+      { id: 2, title: ' 리액트 소개', body: '', checked: false }
     ]
   }
+  /* 모달 창 상태 변화 */
+  handleModal = (flag) => {
+      this.setState({
+          modal: flag
+      });
+  };
 
   handleChange = (e) => {
+    console.log(e.target.name);
     this.setState({
-      input: e.target.value
+      input: {
+        [e.target.name]: e.target.value
+      }
     });
   }
 
   handleCreate = () => {
     const { input, todos } = this.state;
     this.setState({
-      input: '', // 인풋 비우고
+      input: {
+        title: '',
+        body: ''
+      },
       // concat 사용하여 배열 추가 
       todos: todos.concat({
         id: this.id++,
-        text: input,
+        title: input.title,
+        body: input.body,
         checked: false
-      })
+      }),
+      modal: false // 창 닫기
     });
   }
 
@@ -67,23 +85,30 @@ class App extends Component {
     });
   }
 
+  handleUpdate = (id) => {
+    const { todos } = this.state;
+  }
+
   render() {
-    const { input, todos } = this.state;
+    const { input, todos, modal } = this.state;
     const {
       handleChange,
       handleCreate,
       handleKeyPress,
       handleToggle,
-      handleRemove
+      handleRemove,
+      handleModal
     } = this;
 
     return (
       <TodoListTemplate form={(
         <Form
           value = {input}
+          modal = {modal}
           onKeyPress = {handleKeyPress}
           onChange = {handleChange}
           onCreate = {handleCreate}
+          onHandleModal = {handleModal}
         />)}>
         <TodoItemList todos = {todos} onToggle = {handleToggle} onRemove = {handleRemove}/>
       </TodoListTemplate>
