@@ -9,57 +9,57 @@ class App extends Component {
   id = 3 // 이미 0,1,2 가 존재하므로 3으로 설정
 
   state = {
-    modal: false,
-    mode: '',
-    editing: {
-      id: 0,
-      isEdit: false,
-      title: '',
-      body: ''
+    input: {
+      title: '할 일 목록 입력 고',
+      body: '잘 나오나?'
     },
+    modal: false,
+    isEdit: false,
     todos: [
       { id: 0, title: ' 리액트 소개', body: '', checked: false },
       { id: 1, title: ' 리액트 소개', body: '', checked: true },
       { id: 2, title: ' 리액트 소개', body: '', checked: false }
     ]
   }
-  /* 모달 창 변경 */
-  handleMode = (mode, editing) => {
-    console.log(mode);
-    if(mode === 'create') {
-      this.setState({modal: true});
-    } 
-    else if(mode === 'edit') {
+  /* 모달 창 켜고 닫기 */
+  handleModal = () => {
       this.setState({
-        modal: true,
-        editing: editing
-      })
-    }
-    else { // 초기화 
-      this.setState({
-        modal: false,
-        editing: {
-          id: 0,
-          isEdit: false,
-          title: '',
-          body: ''
-        }
+          modal: !this.state.modal,
+          isEdit: false
       });
-    }
+  };
+  /* 모달 창 입력 상태 변화 */
+  handleChange = (e) => {
+    console.log('움직임 !');
+    const { input } = this.state;
+
+    input[e.target.name] = e.target.value;
+    this.setState(input);
   }
 
-  handleCreate = (data) => {
-    const { todos } = this.state;
-
+  handleCreate = () => {
+    const { input, todos } = this.state;
     this.setState({
+      input: {
+        title: '',
+        body: ''
+      },
       // concat 사용하여 배열 추가 
       todos: todos.concat({
         id: this.id++,
-        checked: false,
-        ...data
-      })
+        title: input.title,
+        body: input.body,
+        checked: false
+      }),
+      modal: false // 창 닫기
     });
-    this.handleMode('close');
+  }
+
+  handleKeyPress = (e) => {
+    // 눌려진 키가 enter 면 handleCreate 호출
+    if(e.key === 'Enter') {
+      this.handleCreate();
+    }
   }
 
   handleToggle = (id) => {
@@ -87,53 +87,63 @@ class App extends Component {
     });
   }
 
-  handleEdit = (id) => {
-    const { todos } = this.state;
-    // 수정할 객체
-    const selected = {
-      id: id,
-      isEdit: true,
-      title: todos[id].title,
-      body: todos[id].body
-    }
-    this.handleMode('edit', selected);
-  }
-
-  handleUpdate = (id, data) => {
+  handleUpdate = (id) => {
     const { todos } = this.state;
 
     this.setState({
+      modal: !this.state.modal,
+      isEdit: !this.state.isEdit,
+      input: {
+        title: todos[id].title,
+        body: todos[id].body
+      }
+    });
+  }
+
+  handleCheck = (id, data) => {
+    const { todos } = this.state;
+
+    this.setState({
+      modal: !this.state.modal,
+      isEdit: !this.state.isEdit,
       todos: todos.map(
         prev => id === prev.id ? { ...prev, ...data } : prev
       )
     });
-    this.handleMode('close');
   }
 
   render() {
-    const { todos, modal, editing } = this.state;
+    const { input, todos, modal, isEdit } = this.state;
     const {
+      handleChange,
       handleCreate,
+      handleKeyPress,
       handleToggle,
       handleRemove,
       handleUpdate,
-      handleEdit,
-      handleMode
+      handleCheck,
+      handleModal
     } = this;
 
     return (
-      <TodoListTemplate  
-        modal = {modal}
-        editing = {editing}
-        onCreate = {handleCreate}
-        onHandleMode = {handleMode}
-        onUpdate = {handleUpdate}
-      >
+      <TodoListTemplate  modal = {modal} onHandleModal = {handleModal}
+      form={(
+        <Form
+          todos = {todos}
+          value = {input}
+          modal = {modal}
+          isEdit = {isEdit}
+          onKeyPress = {handleKeyPress}
+          onChange = {handleChange}
+          onCreate = {handleCreate}
+          onHandleModal = {handleModal}
+          onCheck = {handleCheck}
+        />)}>
         <TodoItemList 
         todos = {todos}
         onToggle = {handleToggle} 
         onRemove = {handleRemove}
-        onEdit = {handleEdit}/>
+        onUpdate = {handleUpdate}/>
       </TodoListTemplate>
     );
   }

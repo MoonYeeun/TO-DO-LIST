@@ -76,6 +76,26 @@
     min-height: 5rem;
   }
 
+  .form {
+    display: flex;
+  }
   .form-wrapper {
-    margin-top: 1rem;
+    min-height: 3rem;
+  }
+
+  .create-button {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: 1rem;
+    background: #22b8cf;
+    border-radius: 3px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .create-button:hover {
+    background: #3bc9db;
   }

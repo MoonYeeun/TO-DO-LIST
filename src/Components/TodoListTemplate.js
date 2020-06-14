@@ -1,26 +1,40 @@
 import React, { Component } from 'react';
 import Card from './Card';
 import './TodoListTemplate.css';
+import TodoModal from './TodoModal';
+import Modal from './Modal';
 
 class TodoListTemplate extends Component {
     render() {
-        const { form, children } = this.props;
+        const { children, modal, onHandleMode } = this.props;
 
         return (
             <main className="todo-list-template">
                 <Card 
                     title = "TO DO"
-                    children = {children}
-                    form = {form}/>
+                    list = {children}>
+                    <div className="create-button" onClick={() => onHandleMode('create')}>+ Add another card</div>
+                    {
+                        modal && (
+                            <Modal>
+                                <TodoModal 
+                                isEdit={this.props.isEdit}
+                                editing ={this.props.editing}
+                                onClose={this.props.onHandleMode}
+                                onUpdate={this.props.onUpdate}
+                                onCreate={this.props.onCreate}></TodoModal>
+                            </Modal>
+                        )
+                    }
+                </Card>
                 <Card 
                     title = "DOING"
-                    children = {children}
-                    form = {form}/>
+                    list = {children}/>
 
                 <Card 
                     title = "DONE"
                     children = {children}
-                    form = {form}/>
+                />
             </main>
         );
     }

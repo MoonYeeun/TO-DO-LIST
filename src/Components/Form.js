@@ -6,10 +6,7 @@ import Modal from './Modal';
 class Form extends Component {
     render () {
         const { 
-            value, 
-            modal, 
-            onChange, 
-            onCreate, 
+            modal,
             onHandleModal
         } = this.props;
 
@@ -17,15 +14,18 @@ class Form extends Component {
             <div className="form">
                 {/* <input value = {value} onChange = {onChange} onKeyPress = {onKeyPress}/> */}
                 {/* <div className="create-button" onClick={onCreate}></div> */}
-                <div className="create-button" onClick={() => onHandleModal(true)}>+ Add another card</div>
+                <div className="create-button" onClick={() => onHandleModal()}>+ Add another card</div>
                 {
                     modal && (
                         <Modal>
                             <TodoModal 
-                            value={value}
-                            onChange={onChange}
-                            onClose={onHandleModal}
-                            onCreate={onCreate}></TodoModal>
+                            todos ={this.props.todos}
+                            value={this.props.value}
+                            isEdit={this.props.isEdit}
+                            onChange={this.props.onChange}
+                            onClose={this.props.onHandleModal}
+                            onCheck={this.props.onCheck}
+                            onCreate={this.props.onCreate}></TodoModal>
                         </Modal>
                     )
                 }
