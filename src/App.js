@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import TodoListTemplate from './Components/TodoListTemplate';
-import TodoListTemplate1 from './Components/TodoListTemplate1';
-import Form from './Components/Form';
 import TodoItemList from './Components/TodoItemList';
 
 class App extends Component {
@@ -104,8 +102,7 @@ class App extends Component {
 
     this.setState({
       todos: todos.map(
-        prev => id === prev.id ? { ...prev, ...data } : prev
-      )
+        prev => prev.id === id ? { ...prev, ...data } : prev)
     });
     this.handleMode('close');
   }

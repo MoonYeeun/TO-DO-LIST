@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import './TodoListTemplate.css';
-import TodoModal from './TodoModal';
-import Modal from './Modal';
 
 class Card extends Component {
     render() {
-        const { title, list, children, modal, onHandleModal } = this.props;
+        const { title, list, children } = this.props;
 
         return (
             <div className = "Card">

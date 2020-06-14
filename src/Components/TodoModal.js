@@ -8,11 +8,6 @@ class TodoModal extends Component {
         body: this.props.editing.body
     }
 
-    // handleToggleEdit = () => {
-    //     const { editing } = this.state;
-    //     this.setState({editing: !editing});
-    // }
-
     handleChange = (e) => {
         const { name, value } = e.target;
         this.setState({
@@ -32,21 +27,13 @@ class TodoModal extends Component {
 
     handleUpdate = () => {
         const { editing, onUpdate } = this.props;
-        onUpdate(editing.id, {
+
+        const data = {
             title: this.state.title,
             body: this.state.body
-        });
+        }
+        onUpdate(editing.id, data);
     }
-    // componentDidUpdate(prevProps, prevState) {
-    //     const { editing, onUpdate } = this.props;
-    //     // editing 값이 true -> false 로 전환 될 때
-    //     if(prevState.editing && !this.state.editing) {
-    //         onUpdate(editing.id, {
-    //             title: this.state.title,
-    //             body: this.state.body
-    //         });
-    //     }
-    // }
 
     render() {
         return (

@@ -72,15 +72,16 @@
   }
 
   .todos-wrapper {
+    margin-top: 1rem;
     text-align: center;
-    min-height: 5rem;
+    min-height: 3rem;
   }
 
   .form {
     display: flex;
   }
   .form-wrapper {
-    min-height: 3rem;
+    margin-top: 1rem;
   }
 
   .create-button {
