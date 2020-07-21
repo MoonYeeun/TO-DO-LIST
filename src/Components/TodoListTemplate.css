@@ -1,9 +1,8 @@
 .todo-list-template {
     margin: 0 auto; /* 페이지 중앙 정렬 */
     margin-top: 4rem;
-    margin-left: 1rem;
-    width: 100%;
-    display: flex;
+    width: 500px;
+    text-align: center;
 }
 
 #board {

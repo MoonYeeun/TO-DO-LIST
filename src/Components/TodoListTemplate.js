@@ -27,14 +27,6 @@ class TodoListTemplate extends Component {
                         )
                     }
                 </Card>
-                {/* <Card 
-                    title = "DOING"
-                    list = {children}/>
-
-                <Card 
-                    title = "DONE"
-                    children = {children}
-                /> */}
             </main>
         );
     }

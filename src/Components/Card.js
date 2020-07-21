@@ -16,23 +16,6 @@ class Card extends Component {
                 <section className="form-wrapper">
                     { children }
                 </section>
-                {/* <section className="form-wrapper">
-                    <div className="create-button" onClick={() => onHandleModal()}>+ Add another card</div>
-                    {
-                        modal && (
-                            <Modal>
-                                <TodoModal 
-                                todos ={this.props.todos}
-                                value={this.props.value}
-                                isEdit={this.props.isEdit}
-                                onChange={this.props.onChange}
-                                onClose={this.props.onHandleModal}
-                                onCheck={this.props.onCheck}
-                                onCreate={this.props.onCreate}></TodoModal>
-                            </Modal>
-                        )
-                    }
-                </section> */}
             </div>
         )
     }

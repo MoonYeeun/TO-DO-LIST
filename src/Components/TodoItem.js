@@ -12,7 +12,7 @@ class TodoItem extends Component {
     onRemove: 아이템을 삭제시키는 함수
     onUpdate: 아이템을 수정시키는 함수
     */
-    const { id, title, body, checked, onToggle, onRemove, onEdit } = this.props;
+    const { id, title, checked, onToggle, onRemove, onEdit } = this.props;
     console.log(id);
 
     return (
@@ -23,7 +23,6 @@ class TodoItem extends Component {
         <div className={`todo-text ${checked && 'checked'}`}>
           <div>
             <div>{title}</div>
-            <div>{body}</div>
           </div>
         </div>
         {
